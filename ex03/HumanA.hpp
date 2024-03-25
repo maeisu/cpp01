@@ -10,7 +10,7 @@ class HumanA {
         Weapon weapon;
         std::string name;
     public:
-        HumanA(Weapon, std::string);
+        HumanA(std::string, Weapon);
         void attack( void );
 };
 
