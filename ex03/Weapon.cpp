@@ -5,9 +5,9 @@ Weapon::Weapon(std::string weapon)
     this->type = weapon;
 }
 
-std::string Weapon::getType(void)
+std::string &Weapon::getType(void) const
 {
-    return this->type;
+    return const_cast<std::string&>(type);
 }
 
 void Weapon::setType(std::string type)
