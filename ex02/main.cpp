@@ -25,3 +25,8 @@ int main() {
     std::cout << *stringPTR << std::endl;
     std::cout << stringREF << std::endl;
 }
+
+#include <stdlib.h>
+__attribute__((destructor)) static void destructor(void) {
+    system("leaks -q HITHISISBRAIN");
+}

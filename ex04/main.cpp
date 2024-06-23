@@ -2,10 +2,15 @@
 #include <string>
 #include <fstream>
 
-int main () {
-    std::string fileName = "test";
-    std::string s1 = "a";
-    std::string s2 = "q";
+
+
+int main (int argc, char **argv) {
+    if (argc != 4) {
+        return 1;
+    }
+    std::string fileName = argv[1];
+    std::string s1 = argv[2];
+    std::string s2 = argv[3];
     std::ifstream ifs(fileName);
     std::ofstream ofs("./" + fileName + ".replace");
     std::string str;
@@ -15,8 +20,11 @@ int main () {
         std::cerr << "Failed to open file." << std::endl;
         return -1;
     }
+    if (ofs.fail()) {
+        std::cerr << "Failed to create output file." << std::endl;
+        return -1;
+    }
     while (std::getline(ifs, str)) {
-        std::cout << "#" << str << std::endl;
         findIndex = 0;
         while (0 <= findIndex && findIndex < str.length()) {
             findIndex = str.find(s1);
@@ -25,8 +33,14 @@ int main () {
                 str.insert(findIndex, s2);
             }
         }
-        std::cout << "!" << str << std::endl;
         ofs << str << std::endl;
     }
+    ifs.close();
+    ofs.close();
     return 0;
+}
+
+#include <stdlib.h>
+__attribute__((destructor)) static void destructor(void) {
+    system("leaks -q SedIsForLosers");
 }

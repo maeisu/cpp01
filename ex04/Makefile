@@ -3,7 +3,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJ_DIR = ./objs
 
-SRCS = main.cpp ft_replace.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 DEPS = $(OBJS:.o=.d)
 

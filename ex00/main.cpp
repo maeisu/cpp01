@@ -1,6 +1,13 @@
 #include "Zombie.hpp"
-//これのhppの書き方聞く、あとmainの書き方も
 
 int main() {
-    std::cout << "create Zombie" << std::endl;
+    Zombie* zombie = newZombie("test");
+    zombie->announce();
+    randomChump("random");
+    delete zombie;
+}
+
+#include <stdlib.h>
+__attribute__((destructor)) static void destructor(void) {
+    system("leaks -q BraiiiiiiinnnzzzZ");
 }
