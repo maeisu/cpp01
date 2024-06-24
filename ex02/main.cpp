@@ -26,7 +26,7 @@ int main() {
     std::cout << stringREF << std::endl;
 }
 
-#include <stdlib.h>
-__attribute__((destructor)) static void destructor(void) {
-    system("leaks -q HITHISISBRAIN");
-}
+// #include <stdlib.h>
+// __attribute__((destructor)) static void destructor(void) {
+//     system("leaks -q HITHISISBRAIN");
+// }

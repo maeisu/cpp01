@@ -7,7 +7,7 @@ int main() {
     delete zombie;
 }
 
-#include <stdlib.h>
-__attribute__((destructor)) static void destructor(void) {
-    system("leaks -q BraiiiiiiinnnzzzZ");
-}
+// #include <stdlib.h>
+// __attribute__((destructor)) static void destructor(void) {
+//     system("leaks -q BraiiiiiiinnnzzzZ");
+// }

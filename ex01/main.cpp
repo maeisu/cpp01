@@ -9,7 +9,7 @@ int main() {
     delete[] zombies;
 }
 
-#include <stdlib.h>
-__attribute__((destructor)) static void destructor(void) {
-    system("leaks -q MoarBrainz!");
-}
+// #include <stdlib.h>
+// __attribute__((destructor)) static void destructor(void) {
+//     system("leaks -q MoarBrainz!");
+// }

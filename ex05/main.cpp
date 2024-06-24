@@ -9,7 +9,7 @@ int main() {
     harl.complain("a");
 }
 
-#include <stdlib.h>
-__attribute__((destructor)) static void destructor(void) {
-    system("leaks -q Harl");
-}
+// #include <stdlib.h>
+// __attribute__((destructor)) static void destructor(void) {
+//     system("leaks -q Harl");
+// }

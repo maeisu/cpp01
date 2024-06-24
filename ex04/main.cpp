@@ -3,11 +3,11 @@
 #include <fstream>
 #include <sstream>
 
-void ft_replace(std::string fileName, std::string s1, std::string s2) {
+static void ft_replace(const std::string& fileName, const std::string& s1, const  std::string& s2) {
     std::ifstream ifs(fileName);
     std::string str;
     std::stringstream ss;
-    unsigned long findIndex = 0;
+    std::string::size_type findIndex = 0;
 
     if (ifs.fail()) {
         std::cerr << "Failed to open file." << std::endl;
@@ -15,6 +15,7 @@ void ft_replace(std::string fileName, std::string s1, std::string s2) {
     }
     std::ofstream ofs("./" + fileName + ".replace");
     if (ofs.fail()) {
+        ifs.close();
         std::cerr << "Failed to create output file." << std::endl;
         return ;
     }
@@ -28,7 +29,7 @@ void ft_replace(std::string fileName, std::string s1, std::string s2) {
         return;
     }
     while ((findIndex = str.find(s1, findIndex)) != std::string::npos) {
-        if (0 <= findIndex && findIndex < str.length()) {
+        if ( findIndex < str.length()) {
             str.erase(findIndex, s1.length());
             str.insert(findIndex, s2);
         }
@@ -41,6 +42,7 @@ void ft_replace(std::string fileName, std::string s1, std::string s2) {
 
 int main (int argc, char **argv) {
     if (argc != 4) {
+        std::cerr << "missing arguments." << std::endl;
         return 1;
     }
     std::string fileName = argv[1];
@@ -51,7 +53,7 @@ int main (int argc, char **argv) {
     return 0;
 }
 
-#include <stdlib.h>
-__attribute__((destructor)) static void destructor(void) {
-    system("leaks -q SedIsForLosers");
-}
+// #include <stdlib.h>
+// __attribute__((destructor)) static void destructor(void) {
+//     system("leaks -q SedIsForLosers");
+// }
