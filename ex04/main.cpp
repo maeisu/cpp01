@@ -1,33 +1,41 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 
 void ft_replace(std::string fileName, std::string s1, std::string s2) {
     std::ifstream ifs(fileName);
-    std::ofstream ofs("./" + fileName + ".replace");
     std::string str;
+    std::stringstream ss;
     unsigned long findIndex = 0;
 
     if (ifs.fail()) {
         std::cerr << "Failed to open file." << std::endl;
         return;
     }
+    std::ofstream ofs("./" + fileName + ".replace");
     if (ofs.fail()) {
         std::cerr << "Failed to create output file." << std::endl;
         return ;
     }
-    while (std::getline(ifs, str)) {
-        findIndex = 0;
-        while ((findIndex = str.find(s1, findIndex)) != std::string::npos) {
-            if (0 <= findIndex && findIndex < str.length()) {
-                str.erase(findIndex, s1.length());
-                str.insert(findIndex, s2);
-            }
-            findIndex++;
-        }
-        ofs << str << std::endl;
-    }
+    ss << ifs.rdbuf();
+    str = ss.str();
     ifs.close();
+    if (s1 == "") {
+        ofs << str;
+        ofs.flush();
+        ofs.close();
+        return;
+    }
+    while ((findIndex = str.find(s1, findIndex)) != std::string::npos) {
+        if (0 <= findIndex && findIndex < str.length()) {
+            str.erase(findIndex, s1.length());
+            str.insert(findIndex, s2);
+        }
+        findIndex += s2.length();
+    }
+    ofs << str;
+    ofs.flush();
     ofs.close();
 }
 

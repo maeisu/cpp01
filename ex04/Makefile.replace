@@ -1,6 +1,6 @@
 NAME = SedIsForLosers
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -W -Wextra -Werror -std=c++98
 OBJ_DIR = ./objs
 
 SRCS = main.cpp
@@ -9,7 +9,7 @@ DEPS = $(OBJS:.o=.d)
 
 vpath %.cpp 
 
-all: $(NAME)
+: $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp
 	mkdir -p $(@D)
@@ -24,8 +24,8 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+re: fclean 
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY:  clean fclean re
